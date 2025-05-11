@@ -41,11 +41,11 @@
 5. **Visit http://localhost:3000**
 
 ## 📂 Project Structure
-/app
-  /brief        - Brief generation page
-  /api          - Serverless API route to generate brief
-/components     - Reusable UI components (Form, Output, etc.)
-/lib            - Utility functions (optional)
+    /app
+    /brief        - Brief generation page
+    /api          - Serverless API route to generate brief
+    /components     - Reusable UI components (Form, Output, etc.)
+    /lib            - Utility functions (optional)
 
 ## 🔧 Commands
 - **npm run dev — Run dev server**

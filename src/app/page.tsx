@@ -44,7 +44,7 @@ const LandingPage = () => {
             Powered by AI. Built for freelancers.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="/brief">
+            <Link href="/brief" prefetch>
               <Button
                 size="lg"
                 className="group bg-indigo-600 hover:bg-indigo-700 text-white dark:bg-indigo-500 dark:hover:bg-indigo-600 cursor-pointer"

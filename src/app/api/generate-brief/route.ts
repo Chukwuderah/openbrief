@@ -7,6 +7,7 @@ const openai = new OpenAI({
 });
 
 export async function POST(req: NextRequest) {
+  console.log("✅ API POST ROUTE HIT!");
   try {
     const body: Brief = await req.json();
 
@@ -39,12 +40,13 @@ Keep it natural, friendly, and tone-appropriate, like you're writing to a real p
 `;
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.8,
     });
 
     const briefText = completion.choices[0]?.message?.content?.trim();
+    console.log("✅ Brief generated successfully");
 
     return NextResponse.json({ brief: briefText });
   } catch (err) {

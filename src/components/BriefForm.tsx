@@ -84,6 +84,7 @@ const BriefForm = ({ onSubmit, loading, reset }: BriefFormProps) => {
     }
 
     onSubmit(formData);
+    console.log("Form Submitting");
   };
 
   const handleChange = (field: keyof Brief, value: string) => {

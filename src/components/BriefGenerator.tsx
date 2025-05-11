@@ -12,6 +12,7 @@ const BriefGenerator = () => {
   const outputRef = useRef<HTMLDivElement | null>(null);
 
   const generateBrief = async (data: Brief) => {
+    console.log("Submitted data:", data);
     setLoading(true);
     setBrief("");
 

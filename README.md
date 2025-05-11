@@ -24,22 +24,21 @@
 ## 🖥️ Getting Started
 
 1. **Clone the repo**
-   ```bash
-   git clone https://github.com/your-username/OpenBrief.git
-   cd OpenBrief
+- git clone https://github.com/your-username/OpenBrief.git
+- cd OpenBrief
 
-2. Install dependencies
+2. **Install dependencies**
 - npm install
 
-3. Set up environment variables
+3. **Set up environment variables**
 
-Create a .env.local file and add:
+- Create a **.env.local** file and add:
 - OPENAI_API_KEY=your-api-key-here
 
-4. Run locally
+4. **Run locally**
 - npm run dev
 
-5. Visit http://localhost:3000
+5. **Visit http://localhost:3000**
 
 ## 📂 Project Structure
 /app
@@ -63,13 +62,13 @@ Create a .env.local file and add:
  - **Animate brief generation (typing effect)**
 
 ## 🧑‍💻 Contributing
-Pull requests are welcome! Here's how to contribute:
+**Pull requests are welcome! Here's how to contribute:**
 
-- **Fork the project**
-- **Create your feature branch (git checkout -b feat/yourFeature)**
-- **Commit your changes (git commit -m 'feat: add cool thing')**
-- **Push to the branch (git push origin feat/yourFeature)**
-- **Open a pull request**
+- Fork the project
+- Create your feature branch (git checkout -b feat/yourFeature)
+- Commit your changes (git commit -m 'feat: add cool thing')
+- Push to the branch (git push origin feat/yourFeature)
+- Open a pull request
 
 ## 📄 License
-MIT License © 2025 [Praevus] (https://github.com/Chukwuderah)
+MIT License © 2025 [Praevus](https://github.com/Chukwuderah)

@@ -1,5 +1,4 @@
 import { Sheet, SheetContent } from "@/components/ui/sheet";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PanelLeft } from "lucide-react";
 import { cn } from "@/lib/utils";

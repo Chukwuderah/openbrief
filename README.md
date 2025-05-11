@@ -29,59 +29,47 @@
    cd OpenBrief
 
 2. Install dependencies
-```bash
-npm install
+-- npm install
 
 3. Set up environment variables
+
 Create a .env.local file and add:
-    - OPENAI_API_KEY=your-api-key-here
+-- OPENAI_API_KEY=your-api-key-here
 
 4. Run locally
-    - npm run dev
+-- npm run dev
 
 5. Visit http://localhost:3000
 
-📂 Project Structure
+## 📂 Project Structure
 /app
   /brief        - Brief generation page
   /api          - Serverless API route to generate brief
 /components     - Reusable UI components (Form, Output, etc.)
 /lib            - Utility functions (optional)
 
-🔧 Commands
-npm run dev — Run dev server
+## 🔧 Commands
+-- **npm run dev — Run dev server**
+-- **npm run build — Build for production**
+-- **npm run lint — Lint the codebase**
+-- **npm run format — Format code using Prettier**
 
-npm run build — Build for production
+## 🧪 To-Do / Next Features
+ -- **Export brief as PDF**
+ -- **Allow saving briefs to local storage**
+ -- **User accounts for saved briefs**
+ -- **Shareable brief links**
+ -- **Multilingual support**
+ -- **Animate brief generation (typing effect)**
 
-npm run lint — Lint the codebase
-
-npm run format — Format code using Prettier
-
-🧪 To-Do / Next Features
- Export brief as PDF
-
- Allow saving briefs to local storage
-
- User accounts for saved briefs
-
- Shareable brief links
-
- Multilingual support
-
- Animate brief generation (typing effect)
-
-🧑‍💻 Contributing
+## 🧑‍💻 Contributing
 Pull requests are welcome! Here's how to contribute:
 
-Fork the project
+-- **Fork the project**
+-- **Create your feature branch (git checkout -b feat/yourFeature)**
+-- **Commit your changes (git commit -m 'feat: add cool thing')**
+-- **Push to the branch (git push origin feat/yourFeature)**
+-- **Open a pull request**
 
-Create your feature branch (git checkout -b feat/yourFeature)
-
-Commit your changes (git commit -m 'feat: add cool thing')
-
-Push to the branch (git push origin feat/yourFeature)
-
-Open a pull request
-
-📄 License
-MIT License © 2025 Praevus [https://github.com/Chukwuderah]
+## 📄 License
+MIT License © 2025 (Praevus) [https://github.com/Chukwuderah]

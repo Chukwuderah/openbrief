@@ -51,7 +51,7 @@ Tone: ${briefData.tone}
               <CardTitle>Brief Details</CardTitle>
             </CardHeader>
             <CardContent>
-              <BriefForm onSubmit={handleBriefGeneration} />
+              <BriefForm onSubmit={handleBriefGeneration} loading={false} reset={false} />
             </CardContent>
           </Card>
 
@@ -60,7 +60,7 @@ Tone: ${briefData.tone}
               <CardTitle>Generated Brief</CardTitle>
             </CardHeader>
             <CardContent>
-              <BriefOutput brief={generatedBrief} />
+              <BriefOutput brief={generatedBrief} regenerateBrief={() => Promise.resolve("")} />
             </CardContent>
           </Card>
         </div>

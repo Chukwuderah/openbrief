@@ -90,8 +90,7 @@ const BriefOutput = ({ brief }: BriefOutputProps) => {
         </>
       ) : (
         <div className="text-center text-muted-foreground p-8 italic">
-          👋 Start by filling out the brief form above. Your shiny,
-          ready-to-send brief will appear here.
+          Fill in the form and click "Generate Brief" to see your brief here.
         </div>
       )}
     </div>

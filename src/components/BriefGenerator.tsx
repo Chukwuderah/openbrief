@@ -7,12 +7,14 @@ import { toast } from "@/components/ui/use-toast";
 
 const BriefGenerator = () => {
   const [brief, setBrief] = useState("");
+  const [formData, setFormData] = useState<Brief | null>(null); // store last data
   const [loading, setLoading] = useState(false);
   const [resetTrigger, setResetTrigger] = useState(false);
   const outputRef = useRef<HTMLDivElement | null>(null);
 
   const generateBrief = async (data: Brief) => {
     console.log("Submitted data:", data);
+    setFormData(data); // Save latest form submission
     setLoading(true);
     setBrief("");
 
@@ -41,6 +43,32 @@ const BriefGenerator = () => {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleRegenerateBrief = async (): Promise<string> => {
+    if (!formData) throw new Error("No form data available");
+
+    try {
+      const res = await fetch("/api/generate-brief", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        return result.brief;
+      } else {
+        throw new Error(result.error || "Error regenerating brief");
+      }
+    } catch (err: any) {
+      toast({
+        title: "❌ Failed to regenerate",
+        description: err.message || "Try again.",
+      });
+      return "";
     }
   };
 
@@ -73,7 +101,10 @@ const BriefGenerator = () => {
                 ✅ Brief generated successfully!
               </p>
             )}
-            <BriefOutput brief={brief} />
+            <BriefOutput
+              brief={brief}
+              regenerateBrief={handleRegenerateBrief}
+            />
           </div>
         )}
       </div>

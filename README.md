@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 OpenBrief
 
-## Getting Started
+**OpenBrief** is an AI-powered brief generator for freelancers and creative professionals. It helps users quickly generate professional project briefs based on client and project info—no overthinking, no formatting headaches, just fast, clean briefs.
 
-First, run the development server:
+## 🚀 Features
 
+- ⚡ Instant AI-generated project briefs
+- 🔄 Regenerate briefs to compare different versions
+- 📋 Copy and 📁 download brief options
+- ✅ Form validation and auto-scroll to results
+- 📱 Fully responsive, clean UI
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui
+- **Icons:** Lucide
+- **State Management:** React Hooks
+- **Backend:** Edge API route with streaming (optional future upgrade)
+- **AI:** OpenAI (or your own prompt logic)
+
+## 🖥️ Getting Started
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/OpenBrief.git
+   cd OpenBrief
+
+2. Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+npm install
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Set up environment variables
+Create a .env.local file and add:
+    - OPENAI_API_KEY=your-api-key-here
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Run locally
+    - npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+5. Visit http://localhost:3000
 
-## Learn More
+📂 Project Structure
+/app
+  /brief        - Brief generation page
+  /api          - Serverless API route to generate brief
+/components     - Reusable UI components (Form, Output, etc.)
+/lib            - Utility functions (optional)
 
-To learn more about Next.js, take a look at the following resources:
+🔧 Commands
+npm run dev — Run dev server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+npm run build — Build for production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+npm run lint — Lint the codebase
 
-## Deploy on Vercel
+npm run format — Format code using Prettier
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🧪 To-Do / Next Features
+ Export brief as PDF
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ Allow saving briefs to local storage
+
+ User accounts for saved briefs
+
+ Shareable brief links
+
+ Multilingual support
+
+ Animate brief generation (typing effect)
+
+🧑‍💻 Contributing
+Pull requests are welcome! Here's how to contribute:
+
+Fork the project
+
+Create your feature branch (git checkout -b feat/yourFeature)
+
+Commit your changes (git commit -m 'feat: add cool thing')
+
+Push to the branch (git push origin feat/yourFeature)
+
+Open a pull request
+
+📄 License
+MIT License © 2025 Praevus [https://github.com/Chukwuderah]

@@ -13,7 +13,7 @@ const BriefGenerator = () => {
   const outputRef = useRef<HTMLDivElement | null>(null);
 
   const generateBrief = async (data: Brief) => {
-    console.log("Submitted data:", data);
+    // console.log("Submitted data:", data);
     setFormData(data); // Save latest form submission
     setLoading(true);
     setBrief("");
@@ -39,7 +39,7 @@ const BriefGenerator = () => {
     } catch (err) {
       toast({
         title: "⚠️ Network error",
-        description: "Check your connection or try again later.",
+        description: err instanceof Error ? err.message : "Check your connection or try again later.",
       });
     } finally {
       setLoading(false);
@@ -63,11 +63,18 @@ const BriefGenerator = () => {
       } else {
         throw new Error(result.error || "Error regenerating brief");
       }
-    } catch (err: any) {
-      toast({
-        title: "❌ Failed to regenerate",
-        description: err.message || "Try again.",
-      });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        toast({
+          title: "❌ Failed to regenerate",
+          description: err.message,
+        });
+      } else {
+        toast({
+          title: "❌ Failed to regenerate",
+          description: "Try again.",
+        });
+      }
       return "";
     }
   };

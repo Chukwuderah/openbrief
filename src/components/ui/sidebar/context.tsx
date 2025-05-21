@@ -65,7 +65,11 @@ export const SidebarProvider = React.forwardRef<
     );
 
     const toggleSidebar = React.useCallback(() => {
-      isMobile ? setOpenMobile((prev) => !prev) : setOpen((prev) => !prev);
+      if (isMobile) {
+        setOpenMobile((prev) => !prev);
+      } else {
+        setOpen((prev) => !prev);
+      }
     }, [isMobile, setOpen, setOpenMobile]);
 
     // Keyboard shortcut: Ctrl/Cmd + B

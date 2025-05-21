@@ -96,10 +96,10 @@ const Navbar = () => {
                       <h3 className="font-semibold">Notifications</h3>
                       <div className="text-sm text-muted-foreground">
                         <p className="py-2 border-b">
-                          New brief template available: "Product Launch"
+                          New brief template available: &quot; Product Launch &quot;
                         </p>
                         <p className="py-2 border-b">
-                          Your brief "Q4 Campaign" was saved
+                          Your brief &quot;Q4 Campaign &quot; was saved
                         </p>
                         <p className="py-2">Welcome to OpenBrief! 🎉</p>
                       </div>

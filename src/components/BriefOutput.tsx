@@ -32,6 +32,7 @@ const BriefOutput = ({ brief, regenerateBrief }: BriefOutputProps) => {
         description: "The brief has been copied to your clipboard.",
       });
     } catch (error) {
+      console.error("Copy error:", error);
       toast({
         title: "❌ Failed to copy",
         description: "Something went wrong. Please try again.",
@@ -56,6 +57,7 @@ const BriefOutput = ({ brief, regenerateBrief }: BriefOutputProps) => {
         description: "Saved as brief.txt in your downloads.",
       });
     } catch (error) {
+      console.error("Download error:", error);
       toast({
         title: "❌ Download failed",
         description: "Something went wrong. Please try again.",
@@ -146,7 +148,7 @@ const BriefOutput = ({ brief, regenerateBrief }: BriefOutputProps) => {
         </>
       ) : (
         <div className="text-center text-muted-foreground p-8 italic">
-          Fill in the form and click "Generate Brief" to see your brief here.
+          Fill in the form and click &quot; Generate Brief &quot; to see your brief here.
         </div>
       )}
     </div>

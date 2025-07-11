@@ -24,7 +24,7 @@ const Navbar = () => {
       <div className="container mx-auto h-full px-4">
         <div className="flex items-center justify-between h-full gap-4">
           <div className="flex items-center gap-4">
-            <SidebarTrigger className="flex" />
+            <SidebarTrigger className="flex sm:hidden" />
             <motion.h1
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}

@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Brief } from "@/components/BriefForm";
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
+if (!process.env.GEMINI_API_KEY) {
+  throw new Error("GEMINI_API_KEY is not defined in environment variables.");
+}
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function POST(req: NextRequest) {
-  console.log("✅ API POST ROUTE HIT!");
+  console.log("AI API POST route hit!");
   try {
     const body: Brief = await req.json();
 
@@ -39,20 +41,18 @@ Then explain the scope and deliverables clearly. Wrap up with the timeline and b
 Keep it natural, friendly, and tone-appropriate, like you're writing to a real person.
 `;
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.8,
-    });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const briefText = response.text().trim();
 
-    const briefText = completion.choices[0]?.message?.content?.trim();
-    console.log("✅ Brief generated successfully");
+    console.log("Brief:", briefText);
 
     return NextResponse.json({ brief: briefText });
   } catch (err) {
-    console.error("Brief generation error:", err);
+    console.error("❌ AI brief generation error:", err);
     return NextResponse.json(
-      { error: "Brief generation failed. Please try again." },
+      { error: "AI brief generation failed. Please try again." },
       { status: 500 }
     );
   }

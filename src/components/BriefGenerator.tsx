@@ -4,19 +4,20 @@ import { useState, useEffect, useRef } from "react";
 import BriefForm, { Brief } from "@/components/BriefForm";
 import BriefOutput from "@/components/BriefOutput";
 import { toast } from "@/components/ui/use-toast";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const BriefGenerator = () => {
-  const [brief, setBrief] = useState("");
-  const [formData, setFormData] = useState<Brief | null>(null); // store last data
+  const [formData, setFormData] = useState<Brief | null>(null);
   const [loading, setLoading] = useState(false);
   const [resetTrigger, setResetTrigger] = useState(false);
   const outputRef = useRef<HTMLDivElement | null>(null);
 
+  const [briefs, setBriefs] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const generateBrief = async (data: Brief) => {
-    // console.log("Submitted data:", data);
-    setFormData(data); // Save latest form submission
+    setFormData(data);
     setLoading(true);
-    setBrief("");
 
     try {
       const res = await fetch("/api/generate-brief", {
@@ -28,26 +29,29 @@ const BriefGenerator = () => {
       const result = await res.json();
 
       if (res.ok) {
-        setBrief(result.brief);
-        setResetTrigger(true); // Trigger form reset
+        setBriefs((prev) => {
+          const updated = [...prev, result.brief];
+          setCurrentIndex(updated.length - 1); // show latest brief
+          return updated;
+        });
+        setResetTrigger(true);
       } else {
         toast({
-          title: "⚠️ Error generating brief",
+          title: "Error",
           description: result.error || "Something went wrong.",
         });
       }
     } catch (err) {
-      toast({
-        title: "⚠️ Network error",
-        description: err instanceof Error ? err.message : "Check your connection or try again later.",
-      });
+      console.error("Error generating brief:",err);
+      toast({ title: "Network error", description: "Check your connection." });
     } finally {
       setLoading(false);
     }
   };
 
-  const handleRegenerateBrief = async (): Promise<string> => {
-    if (!formData) throw new Error("No form data available");
+
+  const handleRegenerateBrief = async () => {
+    if (!formData) return;
 
     try {
       const res = await fetch("/api/generate-brief", {
@@ -59,61 +63,67 @@ const BriefGenerator = () => {
       const result = await res.json();
 
       if (res.ok) {
-        return result.brief;
+        setBriefs((prev) => [...prev, result.brief]);
+        setCurrentIndex((prev) => prev + 1);
       } else {
-        throw new Error(result.error || "Error regenerating brief");
+        toast({
+          title: "❌ Failed to regenerate",
+          description: result.error || "Try again.",
+        });
       }
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast({
-          title: "❌ Failed to regenerate",
-          description: err.message,
-        });
-      } else {
-        toast({
-          title: "❌ Failed to regenerate",
-          description: "Try again.",
-        });
-      }
-      return "";
+      toast({
+        title: "❌ Regeneration failed",
+        description: err instanceof Error ? err.message : "Try again.",
+      });
     }
   };
 
   useEffect(() => {
-    if (brief && outputRef.current) {
+    if (briefs.length > 0 && outputRef.current) {
       outputRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [brief]);
+  }, [briefs]);
 
   return (
-    <div className="grid md:grid-cols-2 gap-8">
-      <div>
-        <BriefForm
-          onSubmit={generateBrief}
-          loading={loading}
-          reset={resetTrigger}
-        />
-      </div>
-      <div>
-        {loading ? (
-          <div className="space-y-4 p-4 animate-pulse">
-            <div className="h-4 bg-muted rounded w-3/4"></div>
-            <div className="h-4 bg-muted rounded w-5/6"></div>
-            <div className="h-4 bg-muted rounded w-2/3"></div>
-          </div>
-        ) : (
-          <div ref={outputRef}>
-            {brief && (
-              <p className="text-green-600 font-semibold mb-4 animate-fade-in">
-                ✅ Brief generated successfully!
-              </p>
-            )}
-            <BriefOutput
-              brief={brief}
-              regenerateBrief={handleRegenerateBrief}
+    <div className="py-4 px-1">
+      <div className="grid md:grid-cols-2 gap-8">
+        <Card>
+          <CardHeader>
+            <CardTitle>Brief Details</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <BriefForm
+              onSubmit={generateBrief}
+              loading={loading}
+              reset={resetTrigger}
             />
-          </div>
-        )}
+          </CardContent>
+        </Card>
+
+        <div>
+          {loading ? (
+            <div className="space-y-4 p-4 animate-pulse">
+              <div className="h-4 bg-muted rounded w-3/4"></div>
+              <div className="h-4 bg-muted rounded w-5/6"></div>
+              <div className="h-4 bg-muted rounded w-2/3"></div>
+            </div>
+          ) : (
+            <Card ref={outputRef} className="min-h-full">
+              <CardHeader>
+                <CardTitle>Generated Brief</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <BriefOutput
+                  briefs={briefs}
+                  currentIndex={currentIndex}
+                  setCurrentIndex={setCurrentIndex}
+                  regenerateBrief={handleRegenerateBrief}
+                />
+              </CardContent>
+            </Card>
+          )}
+        </div>
       </div>
     </div>
   );

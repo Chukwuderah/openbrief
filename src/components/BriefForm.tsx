@@ -83,6 +83,7 @@ const BriefForm = ({ onSubmit, loading, reset }: BriefFormProps) => {
       return;
     }
 
+    console.log("🔄 Calling onSubmit with:", formData);
     onSubmit(formData);
     console.log("Form Submitting");
   };

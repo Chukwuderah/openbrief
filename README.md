@@ -19,7 +19,7 @@
 - **Icons:** Lucide
 - **State Management:** React Hooks
 - **Backend:** Edge API route with streaming (optional future upgrade)
-- **AI:** OpenAI (or your own prompt logic)
+- **AI:** GeminiAI (or your own prompt logic)
 
 ## 🖥️ Getting Started
 
@@ -33,7 +33,7 @@
 3. **Set up environment variables**
 
 - Create a **.env.local** file and add:
-- OPENAI_API_KEY=your-api-key-here
+- GEMINI_API_KEY=your-api-key-here
 
 4. **Run locally**
 - npm run dev

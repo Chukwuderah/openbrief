@@ -37,7 +37,7 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar>
+    <Sidebar className="w-[var(--sidebar-width)] pt-4">
       <SidebarHeader className="p-4 relative">
         {isMobile && (
           <Button

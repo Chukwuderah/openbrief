@@ -42,6 +42,7 @@ const BriefGenerator = () => {
         });
       }
     } catch (err) {
+      console.error("Error generating brief:",err);
       toast({ title: "Network error", description: "Check your connection." });
     } finally {
       setLoading(false);
